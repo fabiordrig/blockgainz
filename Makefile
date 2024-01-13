@@ -24,9 +24,14 @@ migrate:
 	@echo "Migrating database..."
 	migrate -path db/migrations -database "postgres://$(DB_USER):$(DB_PASSWORD)@localhost:$(DB_PORT)/$(DB_NAME)?sslmode=disable" -verbose up
 	@echo "Database migrated."
+
 revert:
 	@echo "Reverting database..."
 	migrate -path db/migrations -database "postgres://$(DB_USER):$(DB_PASSWORD)@localhost:$(DB_PORT)/$(DB_NAME)?sslmode=disable" -verbose down $(REVERT_STEPS)
 	@echo "Database reverted."
 
-PHONY: db createdb dropdb migrate revert create-migration
+sqlc:
+	@echo "Generating sqlc..."
+	sqlc generate
+
+PHONY: db createdb dropdb migrate revert create-migration sqlc

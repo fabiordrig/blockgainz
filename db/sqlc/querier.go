@@ -10,7 +10,7 @@ import (
 
 type Querier interface {
 	CreateCoin(ctx context.Context, arg CreateCoinParams) (Coins, error)
-	GetCoins(ctx context.Context) ([]Coins, error)
+	GetCoins(ctx context.Context, arg GetCoinsParams) ([]Coins, error)
 }
 
 var _ Querier = (*Queries)(nil)

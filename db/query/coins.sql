@@ -2,4 +2,5 @@
 INSERT INTO coins (name, symbol) VALUES ($1, $2) RETURNING *;
 
 -- name: GetCoins :many
-SELECT * FROM coins;
+SELECT * FROM coins ORDER BY name
+LIMIT $1 OFFSET $2;

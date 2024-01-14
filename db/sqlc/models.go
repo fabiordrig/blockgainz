@@ -25,8 +25,8 @@ type Transactions struct {
 	CoinID        uuid.UUID    `json:"coin_id"`
 	Quantity      string       `json:"quantity"`
 	PurchasePrice string       `json:"purchase_price"`
-	PurchaseDate  time.Time    `json:"purchase_date"`
-	CreatedAt     sql.NullTime `json:"created_at"`
+	PurchasedAt   time.Time    `json:"purchased_at"`
+	CreatedAt     time.Time    `json:"created_at"`
 	UpdatedAt     sql.NullTime `json:"updated_at"`
 	DeletedAt     sql.NullTime `json:"deleted_at"`
 }

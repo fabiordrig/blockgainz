@@ -12,8 +12,8 @@ CREATE TABLE "transactions" (
   "coin_id" uuid NOT NULL,
   "quantity" decimal NOT NULL,
   "purchase_price" decimal NOT NULL,
-  "purchase_date" date NOT NULL,
-  "created_at" timestamptz DEFAULT 'now()',
+  "purchased_at" timestamptz NOT NULL,
+  "created_at" timestamptz NOT NULL DEFAULT 'now()',
   "updated_at" timestamptz,
   "deleted_at" timestamptz
 );

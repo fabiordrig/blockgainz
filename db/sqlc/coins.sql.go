@@ -33,11 +33,17 @@ func (q *Queries) CreateCoin(ctx context.Context, arg CreateCoinParams) (Coins, 
 }
 
 const getCoins = `-- name: GetCoins :many
-SELECT coin_id, name, symbol, created_at, updated_at, deleted_at FROM coins
+SELECT coin_id, name, symbol, created_at, updated_at, deleted_at FROM coins ORDER BY name
+LIMIT $1 OFFSET $2
 `
 
-func (q *Queries) GetCoins(ctx context.Context) ([]Coins, error) {
-	rows, err := q.query(ctx, q.getCoinsStmt, getCoins)
+type GetCoinsParams struct {
+	Limit  int32 `json:"limit"`
+	Offset int32 `json:"offset"`
+}
+
+func (q *Queries) GetCoins(ctx context.Context, arg GetCoinsParams) ([]Coins, error) {
+	rows, err := q.query(ctx, q.getCoinsStmt, getCoins, arg.Limit, arg.Offset)
 	if err != nil {
 		return nil, err
 	}

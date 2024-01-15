@@ -1,5 +1,8 @@
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+
 CREATE TABLE "coins" (
-  "coin_id" uuid PRIMARY KEY,
+  "coin_id" uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
   "name" varchar UNIQUE NOT NULL,
   "symbol" varchar UNIQUE NOT NULL,
   "created_at" timestamptz DEFAULT 'now()',
@@ -8,7 +11,7 @@ CREATE TABLE "coins" (
 );
 
 CREATE TABLE "transactions" (
-  "transaction_id" uuid PRIMARY KEY,
+  "transaction_id" uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
   "coin_id" uuid NOT NULL,
   "quantity" decimal NOT NULL,
   "purchase_price" decimal NOT NULL,

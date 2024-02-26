@@ -34,4 +34,8 @@ sqlc:
 	@echo "Generating sqlc..."
 	sqlc generate
 
-PHONY: db createdb dropdb migrate revert create-migration sqlc
+test:
+	@echo "Running tests..."
+	go test -v -cover ./...
+
+PHONY: db createdb dropdb migrate revert create-migration sqlc test
